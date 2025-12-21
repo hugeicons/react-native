@@ -6,7 +6,7 @@
 
 ## What is HugeIcons?
 
-HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,400+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 40,000 icons across 9 unique styles.
+HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,400+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 45,000 icons across 10 unique styles.
 
 ### Key Highlights
 - **4,400+ Free Icons**: Extensive collection of Stroke Rounded icons covering essential UI elements, actions, and concepts
@@ -318,6 +318,7 @@ The library supports both iOS and Android through react-native-svg.
 - **Special Styles**
   - Bulk Rounded (`@hugeicons-pro/core-bulk-rounded`)
   - Duotone Rounded (`@hugeicons-pro/core-duotone-rounded`)
+  - Duotone Standard (`@hugeicons-pro/core-duotone-standard`)
   - Twotone Rounded (`@hugeicons-pro/core-twotone-rounded`)
 
 ## License
