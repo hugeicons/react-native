@@ -6,10 +6,10 @@
 
 ## What is HugeIcons?
 
-HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,000+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 36,000 icons across 9 unique styles.
+HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,400+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 40,000 icons across 9 unique styles.
 
 ### Key Highlights
-- **4,000+ Free Icons**: Extensive collection of Stroke Rounded icons covering essential UI elements, actions, and concepts
+- **4,400+ Free Icons**: Extensive collection of Stroke Rounded icons covering essential UI elements, actions, and concepts
 - **Pixel Perfect**: Every icon is crafted on a 24x24 pixel grid ensuring crisp, clear display at any size
 - **Customizable**: Easily adjust colors, sizes, and styles to match your design needs
 - **Regular Updates**: New icons added regularly to keep up with evolving design trends
@@ -92,8 +92,24 @@ function MyComponent() {
 | `color` | `string` | `currentColor` | Icon color (CSS color value) |
 | `strokeWidth` | `number` | `undefined` | Width of the icon strokes. When used with `absoluteStrokeWidth`, the stroke width will be automatically scaled relative to the icon size |
 | `absoluteStrokeWidth` | `boolean` | `false` | When true, the stroke width will be scaled relative to the icon size to maintain visual consistency across different sizes |
+| `className` | `string` | - | NativeWind classes for styling the icon (requires NativeWind to be installed) |
 
 ## Changelog
+
+### v1.0.9
+- Fixed `slicedToArray is not a function` error on React Native 0.72.x and older versions
+- Improved compatibility with Metro bundler by avoiding ES6 array destructuring on iterables
+
+### v1.0.7
+- Enhanced stroke functionality to apply stroke properties consistently to both parent SVG and child elements
+- Improved stroke width calculation and inheritance across SVG hierarchy
+- Maintained backward compatibility with existing stroke implementations
+
+### v1.0.6
+- Added NativeWind support through `className` prop
+- Icons can now be styled using Tailwind CSS classes when NativeWind is installed
+- Maintained backward compatibility for non-NativeWind users
+- Enhanced TypeScript types for NativeWind support
 
 ### v1.0.3
 - Added `absoluteStrokeWidth` prop for consistent stroke width scaling
@@ -143,6 +159,32 @@ function CustomExample() {
         icon={NotificationIcon}
         size={32}
         color="#FF5733"
+      />
+    </View>
+  );
+}
+```
+
+### Using with NativeWind
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { HugeiconsIcon } from '@hugeicons/react-native';
+import { BellIcon } from '@hugeicons/core-free-icons';
+
+function NativeWindExample() {
+  return (
+    <View className="p-4">
+      {/* Basic styling */}
+      <HugeiconsIcon
+        icon={BellIcon}
+        className="text-blue-500 w-6 h-6"
+      />
+
+      {/* Use Size*/}
+      <HugeiconsIcon
+        icon={BellIcon}
+        className="text-green-500 size-32"
       />
     </View>
   );
