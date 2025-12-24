@@ -1,25 +1,36 @@
-![31c9262e-aeea-4403-9086-3c8b88885cab](https://github.com/hugeicons/hugeicons-react/assets/130147052/ff91f2f0-095a-4c6d-8942-3af4759f9021)
+![Hugeicons Logo](https://raw.githubusercontent.com/hugeicons/react/main/assets/logo.png)
 
 # @hugeicons/react-native
 
-> HugeIcons Pro React Native Component Library - Beautiful and customizable icons for your React Native applications
+> Hugeicons React Native rendering library for fast, customizable icons with TypeScript and tree-shaking support
 
-## What is HugeIcons?
+## What is Hugeicons?
 
-HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,400+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 45,000 icons across 10 unique styles.
+Hugeicons is a large icon set for modern web and mobile apps. The free package includes 4,600+ Stroke Rounded icons. The Pro package provides 46,000+ icons across 10 styles.
+
+## How It Works
+
+This package (`@hugeicons/react-native`) is a **rendering library** - it provides the `HugeiconsIcon` component that displays icons in your React Native app. The icons themselves come from separate icon packages:
+
+- **Free icons**: `@hugeicons/core-free-icons` (4,600+ icons)
+- **Pro icons**: `@hugeicons-pro/core-*` packages (46,000+ icons, requires license)
 
 ### Key Highlights
-- **4,400+ Free Icons**: Extensive collection of Stroke Rounded icons covering essential UI elements, actions, and concepts
-- **Pixel Perfect**: Every icon is crafted on a 24x24 pixel grid ensuring crisp, clear display at any size
+- **4,600+ Free Icons**: Stroke Rounded set for unlimited personal and commercial projects
+- **46,000+ Pro Icons, 10 Styles**: Stroke, Solid, Bulk, Duotone, and Twotone families for sharp, rounded, and standard needs with richer variants
+- **Pixel Perfect Grid**: Built on a 24x24 grid for crisp rendering at any size
 - **Customizable**: Easily adjust colors, sizes, and styles to match your design needs
+- **Tree Shaking Ready**: Named exports keep bundles lean in modern bundlers
 - **Regular Updates**: New icons added regularly to keep up with evolving design trends
 
-> 📚 **Looking for Pro Icons?** Check out our comprehensive documentation at [docs.hugeicons.com](https://docs.hugeicons.com) for detailed information about pro icons, styles, and advanced usage.
 
-![a40aa766-1b04-4a2a-a2e6-0ec3c492b96a](https://github.com/hugeicons/hugeicons-react/assets/130147052/f82c0e0e-60ae-4617-802f-812cdc7a58da)
+> **Looking for Pro Icons?** Check out our docs at [hugeicons.com/docs](https://hugeicons.com/docs) for detailed information about pro icons, styles, and advanced usage.
+
+![Hugeicons Icons](https://raw.githubusercontent.com/hugeicons/react/main/assets/icons.png)
 
 ## Table of Contents
-- [What is HugeIcons?](#what-is-hugeicons)
+- [What is Hugeicons?](#what-is-hugeicons)
+- [How It Works](#how-it-works)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -27,7 +38,7 @@ HugeIcons is a comprehensive icon library designed for modern web and mobile app
 - [Examples](#examples)
   - [Basic Usage](#basic-usage)
   - [Custom Size and Color](#custom-size-and-color)
-  - [Interactive Examples](#interactive-examples)
+  - [More examples and patterns](#more-examples-and-patterns)
 - [Performance](#performance)
 - [Troubleshooting](#troubleshooting)
 - [Platform Support](#platform-support)
@@ -38,12 +49,13 @@ HugeIcons is a comprehensive icon library designed for modern web and mobile app
 
 ## Features
 
-- 🎨 Customizable colors and sizes
-- 💪 TypeScript support with full type definitions
-- 🎯 Tree-shakeable for optimal bundle size
-- 📱 Native SVG rendering for optimal performance
-- ⚡ Lightweight and optimized
-- 🔄 Alternate icon support for dynamic interactions
+- Customizable colors, sizes, and stroke width
+- TypeScript support with full type definitions
+- Tree shakeable builds (ESM, CJS) for bundlers like Metro
+- Native SVG rendering via react-native-svg for optimal performance
+- Optimized SVGs for small payloads and fast render
+- Alternate icon support for dynamic interactions
+- NativeWind support for Tailwind CSS styling
 
 ## Installation
 
@@ -61,7 +73,7 @@ pnpm add @hugeicons/react-native @hugeicons/core-free-icons react-native-svg
 bun add @hugeicons/react-native @hugeicons/core-free-icons react-native-svg
 ```
 
-Note: This package requires `react-native-svg` as a peer dependency. Make sure to follow the [react-native-svg installation instructions](https://github.com/react-native-svg/react-native-svg#installation) for your platform.
+Note: This package requires `react-native-svg` as a peer dependency. Some frameworks like Expo handle this automatically. For bare React Native projects, follow the [react-native-svg installation instructions](https://github.com/react-native-svg/react-native-svg#installation).
 
 ## Usage
 
@@ -69,7 +81,7 @@ Note: This package requires `react-native-svg` as a peer dependency. Make sure t
 import { HugeiconsIcon } from '@hugeicons/react-native';
 import { SearchIcon } from '@hugeicons/core-free-icons';
 
-function MyComponent() {
+function App() {
   return (
     <HugeiconsIcon
       icon={SearchIcon}
@@ -85,47 +97,14 @@ function MyComponent() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `icon` | `IconType` | Required | The main icon to display |
-| `altIcon` | `IconType` | - | Alternative icon that can be used for states, interactions, animations, or dynamic icon swapping |
+| `icon` | `IconSvgElement` | Required | The main icon to display |
+| `altIcon` | `IconSvgElement` | - | Alternative icon for states, interactions, or dynamic icon swapping |
 | `showAlt` | `boolean` | `false` | When true, displays the altIcon instead of the main icon |
-| `size` | `number` | `24` | Icon size in pixels |
-| `color` | `string` | `currentColor` | Icon color (CSS color value) |
-| `strokeWidth` | `number` | `undefined` | Width of the icon strokes. When used with `absoluteStrokeWidth`, the stroke width will be automatically scaled relative to the icon size |
-| `absoluteStrokeWidth` | `boolean` | `false` | When true, the stroke width will be scaled relative to the icon size to maintain visual consistency across different sizes |
-| `className` | `string` | - | NativeWind classes for styling the icon (requires NativeWind to be installed) |
-
-## Changelog
-
-### v1.0.9
-- Fixed `slicedToArray is not a function` error on React Native 0.72.x and older versions
-- Improved compatibility with Metro bundler by avoiding ES6 array destructuring on iterables
-
-### v1.0.7
-- Enhanced stroke functionality to apply stroke properties consistently to both parent SVG and child elements
-- Improved stroke width calculation and inheritance across SVG hierarchy
-- Maintained backward compatibility with existing stroke implementations
-
-### v1.0.6
-- Added NativeWind support through `className` prop
-- Icons can now be styled using Tailwind CSS classes when NativeWind is installed
-- Maintained backward compatibility for non-NativeWind users
-- Enhanced TypeScript types for NativeWind support
-
-### v1.0.3
-- Added `absoluteStrokeWidth` prop for consistent stroke width scaling
-- Improved stroke width handling by applying it at the SVG level
-- Enhanced TypeScript types and documentation
-
-### v1.0.2
-- Added `altIcon` prop for alternate icon support
-- Added `showAlt` prop for conditional icon display
-- Improved TypeScript types and documentation
-
-### v1.0.0
-- Initial release
-- Basic icon rendering functionality
-- Support for customization (size, color, alternate icons)
-- Full TypeScript support
+| `size` | `number \| string` | `24` | Icon size in pixels |
+| `color` | `string` | `black` | Icon color |
+| `strokeWidth` | `number` | - | Width of the icon strokes |
+| `absoluteStrokeWidth` | `boolean` | `false` | When true, the stroke width will be scaled relative to the icon size |
+| `className` | `string` | - | NativeWind classes for styling (requires NativeWind) |
 
 ## Examples
 
@@ -165,102 +144,10 @@ function CustomExample() {
 }
 ```
 
-### Using with NativeWind
-```jsx
-import React from 'react';
-import { View } from 'react-native';
-import { HugeiconsIcon } from '@hugeicons/react-native';
-import { BellIcon } from '@hugeicons/core-free-icons';
+### More examples and patterns
 
-function NativeWindExample() {
-  return (
-    <View className="p-4">
-      {/* Basic styling */}
-      <HugeiconsIcon
-        icon={BellIcon}
-        className="text-blue-500 w-6 h-6"
-      />
-
-      {/* Use Size*/}
-      <HugeiconsIcon
-        icon={BellIcon}
-        className="text-green-500 size-32"
-      />
-    </View>
-  );
-}
-```
-
-### Interactive Examples
-
-#### Search Bar with Clear Button
-```jsx
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { HugeiconsIcon } from '@hugeicons/react-native';
-import { SearchIcon, CloseCircleIcon } from '@hugeicons/core-free-icons';
-
-function SearchExample() {
-  const [searchValue, setSearchValue] = useState('');
-
-  return (
-    <View style={styles.container}>
-      <TextInput
-        value={searchValue}
-        onChangeText={setSearchValue}
-        placeholder="Search..."
-        style={styles.input}
-      />
-      <TouchableOpacity
-        onPress={() => searchValue.length > 0 && setSearchValue('')}
-      >
-        <HugeiconsIcon
-          icon={SearchIcon}
-          altIcon={CloseCircleIcon}
-          showAlt={searchValue.length > 0}
-          color="#666"
-        />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-  },
-  input: {
-    flex: 1,
-    height: 40,
-    marginRight: 8,
-  },
-});
-```
-
-#### Theme Toggle
-```jsx
-import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { HugeiconsIcon } from '@hugeicons/react-native';
-import { SunIcon, MoonIcon } from '@hugeicons/core-free-icons';
-
-function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
-
-  return (
-    <TouchableOpacity onPress={() => setIsDark(!isDark)}>
-      <HugeiconsIcon
-        icon={SunIcon}
-        altIcon={MoonIcon}
-        showAlt={isDark}
-        color={isDark ? '#FFF' : '#000'}
-      />
-    </TouchableOpacity>
-  );
-}
-```
+- Examples: https://hugeicons.com/docs/integrations/react-native/examples
+- Best practices: https://hugeicons.com/docs/integrations/react-native/best-practices
 
 ## Performance
 
@@ -276,7 +163,7 @@ function ThemeToggle() {
 1. **Icons not showing up?**
    - Make sure you've installed both `@hugeicons/react-native` and `@hugeicons/core-free-icons`
    - Verify that `react-native-svg` is properly installed and linked
-   - Check that icon names are correctly imported
+   - Check that the icon names are correctly imported
 
 2. **TypeScript errors?**
    - Ensure your `tsconfig.json` includes the necessary type definitions
@@ -298,13 +185,13 @@ The library supports both iOS and Android through react-native-svg.
 
 - [@hugeicons/react](https://www.npmjs.com/package/@hugeicons/react) - React component
 - [@hugeicons/vue](https://www.npmjs.com/package/@hugeicons/vue) - Vue component
-- [@hugeicons/svelte](https://www.npmjs.com/package/@hugeicons/svelte) - Svelte component
 - [@hugeicons/angular](https://www.npmjs.com/package/@hugeicons/angular) - Angular component
+- [@hugeicons/svelte](https://www.npmjs.com/package/@hugeicons/svelte) - Svelte component
 
 ## Pro Version
 
-> 🌟 **Want access to 36,000+ icons and 9 unique styles?** 
-> Check out our [Pro Version](https://hugeicons.com/pricing) and visit [docs.hugeicons.com](https://docs.hugeicons.com) for comprehensive documentation.
+> **Want access to 46,000+ icons and 10 unique styles?**
+> Check out our [Pro Version](https://hugeicons.com/pricing) and visit our [docs](https://hugeicons.com/docs) for detailed documentation.
 
 ### Available Pro Styles
 - **Stroke Styles**
@@ -323,9 +210,16 @@ The library supports both iOS and Android through react-native-svg.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+The code in this package (`@hugeicons/react-native`) is licensed under the MIT License.
+
+This package only provides rendering utilities. It does not include or grant any rights to Hugeicons icon assets. Using Pro icon styles requires a valid Hugeicons Pro license.
+
+Hugeicons icon packs are licensed separately:
+- **Free icon packs**: use the license included with the specific free icon package you install.
+- **Pro icon packs (`@hugeicons-pro/*`)**: require a paid Hugeicons Pro license and are governed by the Hugeicons Pro Terms (see [Pro License](PRO-LICENSE.md).).
+
 
 ## Related
 
 - [@hugeicons/core-free-icons](https://www.npmjs.com/package/@hugeicons/core-free-icons) - Free icon package
-- [HugeIcons Website](https://hugeicons.com) - Browse all available icons 
+- [Hugeicons Website](https://hugeicons.com) - Browse all available icons

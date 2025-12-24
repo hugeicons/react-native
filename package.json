@@ -1,16 +1,28 @@
 {
   "name": "@hugeicons/react-native",
-  "version": "1.0.9",
-  "description": "HugeIcons Pro React Native Component Library https://hugeicons.com",
+  "version": "1.0.10",
+  "description": "Hugeicons React Native Component Library https://hugeicons.com",
   "homepage": "https://hugeicons.com",
+  "license": "MIT",
   "amdName": "hugeicons-pro-react-native",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "PRO-LICENSE.md",
+    "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugeicons/react-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hugeicons/react-native/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -23,7 +35,9 @@
     "build": "pnpm clean && pnpm typecheck && pnpm build:bundles",
     "build:bundles": "rollup -c ./rollup.config.mjs",
     "typecheck": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "publish:beta": "pnpm build && npm publish --tag beta --no-git-checks",
+    "publish:prod": "pnpm build && npm publish --no-git-checks"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
