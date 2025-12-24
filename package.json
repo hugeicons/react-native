@@ -57,15 +57,14 @@
     "react-native-svg": ">=12.0.0"
   },
   "keywords": [
+    "hugeicons",
+    "react-native",
     "icons",
     "react-native-icons",
-    "ui-components",
-    "design-system",
+    "svg-icons",
+    "svg",
     "vector-icons",
-    "react-native-component-library",
-    "mobile-icons",
-    "scalable-icons",
-    "customizable-icons",
-    "icon-library"
+    "icon-library",
+    "typescript"
   ]
 }
